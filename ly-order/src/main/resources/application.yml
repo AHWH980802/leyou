@@ -1,0 +1,33 @@
+server:
+  port: 9089
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://120.78.67.10:3306/leyou?characterEncoding=UTF-8
+    username: root
+    password: root
+  jackson:
+    default-property-inclusion: non_null
+  redis:
+    host: 120.78.67.10
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    ip-address: 120.78.67.10
+    prefer-ip-address: true
+mybatis:
+  type-aliases-package: com.leyou.order.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+ly:
+  jwt:
+    pubKeyPath: C:\StudyData\rsa.pub # 公钥地址
+  worker:
+    workerId: 1
+    dataCenterId: 1

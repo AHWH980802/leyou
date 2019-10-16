@@ -1,0 +1,33 @@
+server:
+  port: 9085
+
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://120.78.67.10:3306/leyou?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+  rabbitmq:
+    password: leyou
+    username: leyou
+    host: 120.78.67.10
+    virtual-host: /leyou
+  redis:
+    host: 120.78.67.10
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.leyou.user.pojo
+

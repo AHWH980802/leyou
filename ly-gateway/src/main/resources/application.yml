@@ -1,0 +1,52 @@
+server:
+  port: 10010
+
+spring:
+  application:
+    name: api-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+
+zuul:
+  prefix: /api  # 路由前缀
+  routes:
+    item-service: /item/** # 商品微服务的映射路径
+    search-service: /search/** # 搜索微服务
+    user-service: /user/** # 用户微服务
+    auth-service: /auth/** # 授权中心微服务
+    cart-service: /cart/** # 购物车中心微服务
+    order-service: /order/** # 订单中心微服务
+    upload-service:
+      path: /upload/**
+      strip-prefix: false
+      serviceId: upload-service
+  add-host-header: true
+  sensitive-headers:
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 210000  # 熔断超时时长
+
+ribbon:
+  ConnectTimeout: 100000 # 连接超时时间(ms)
+  ReadTimeout: 100000 # 通信超时时间(ms)
+  MaxAutoRetriesNextServer: 0 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 0 # 同一实例的重试次数
+
+ly:
+  jwt:
+    pubKeyPath: /opt/leyou/rsa.pub # 公钥地址
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item

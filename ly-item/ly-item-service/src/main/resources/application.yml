@@ -1,0 +1,48 @@
+server:
+  port: 9081
+
+spring:
+  application:
+    name: item-service
+  datasource:
+    url: jdbc:mysql://120.78.67.10:3306/leyou?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+  rabbitmq:
+    host: 120.78.67.10
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
+    template:
+      retry:
+        enabled: true
+        initial-interval: 10000ms
+        max-interval: 30000ms
+        multiplier: 2
+      exchange: ly.item.exchange
+    publisher-confirms: true
+
+#  - template：有关`AmqpTemplate`的配置
+#    - retry：失败重试
+#      - enabled：开启失败重试
+#      - initial-interval：第一次重试的间隔时长
+#      - max-interval：最长重试间隔，超过这个间隔将不再重试
+#      - multiplier：下次重试间隔的倍数，此处是2即下次重试间隔是上次的2倍
+#    - exchange：缺省的交换机名称，此处配置后，发送消息如果不指定交换机就会使用这个
+#  - publisher-confirms：生产者确认机制，确保消息会正确发送，如果发送失败会有错误回执，从而触发重试
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.leyou: debug

@@ -1,0 +1,17 @@
+server:
+  port: 9086
+spring:
+  application:
+    name: sms-service
+  rabbitmq:
+    virtual-host: /leyou
+    host: 120.78.67.10
+    username: leyou
+    password: leyou
+  redis:
+    host: 120.78.67.10
+
+ly:
+  sms:
+    ACCOUNT_SID: 7eff0c7d9e144d198374c7da8de1452a
+    AUTH_TOKEN: 247356fde16c47588401f26e64af36e9

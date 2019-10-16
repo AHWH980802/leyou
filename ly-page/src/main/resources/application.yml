@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: page-service
+  thymeleaf:
+    cache: false
+  rabbitmq:
+    host: 120.78.67.10
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
+
+server:
+  port: 9084
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+logging:
+  level:
+    com.leyou: error
